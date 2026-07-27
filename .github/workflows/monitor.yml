@@ -24,6 +24,7 @@ jobs:
       - name: Registrar historial
         env:
           SFTP_CONN: ${{ secrets.SFTP_CONN }}
+          TRADEINN_CONN: ${{ secrets.TRADEINN_CONN }}
         run: python registrar_historial.py
       - name: Guardar historial
         run: |
