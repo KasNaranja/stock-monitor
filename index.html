@@ -103,10 +103,11 @@ function timelineLanes(lanes){
       s+=`<circle cx="${px}" cy="${y}" r="4.5" fill="${ln.color}"><title>${new Date(e.mtime).toLocaleString("es-ES")} · ${fmtTam(e.size)}</title></circle>`;});});
   return s+`</svg>`;
 }
-function statRows(st){
-  return `<div class="row"><span>Cambios últimas 24 h</span><span>${st.d1}</span></div>
-    <div class="row"><span>Cambios últimos 7 días</span><span>${st.d7}</span></div>
-    <div class="row"><span>Cambios últimos 15 días</span><span>${st.d15}</span></div>
+function statRows(st,lbl){
+  lbl=lbl||"Cambios";
+  return `<div class="row"><span>${lbl} últimas 24 h</span><span>${st.d1}</span></div>
+    <div class="row"><span>${lbl} últimos 7 días</span><span>${st.d7}</span></div>
+    <div class="row"><span>${lbl} últimos 15 días</span><span>${st.d15}</span></div>
     <div class="row"><span>Intervalo medio</span><span>${st.media}</span></div>`;
 }
 
@@ -140,13 +141,18 @@ function seccionProceso(n,titulo,proc,color,cfg){
     const upd=ult.mtime?new Date(ult.mtime):new Date(proc.eventos[proc.eventos.length-1].mtime);
     const st=statsEventos(proc.eventos);
     let extra="";
+    if(cfg.contarCambios){
+      const now=Date.now();
+      const copias=(proc.eventos||[]).filter(e=>e.cambio&&new Date(e.mtime).getTime()>=now-15*DAY).length;
+      extra+=`<div class="row"><span>Copias con stock nuevo (15 d)</span><span>${copias}</span></div>`;
+    }
     if(ult.ultimo_fichero) extra+=`<div class="row"><span>Último fichero</span><span style="font-size:.82rem">${ult.ultimo_fichero}</span></div>`;
     if(ult.size) extra+=`<div class="row"><span>Tamaño</span><span>${fmtTam(ult.size)}</span></div>`;
     if(ult.num_ficheros) extra+=`<div class="row"><span>Ficheros en el FTP</span><span>${ult.num_ficheros}</span></div>`;
     cuerpo=`<div class="card"><h3><span class="dot" style="background:${color}"></span>${cfg.subtitulo}</h3>
       <div class="muted">${cfg.etiqueta}</div><div class="big">${haceTexto(upd)}</div>
       <div class="muted">${fmtFecha(upd)} ${badgeFrescura(upd,cfg.okH)}</div>
-      <div style="margin-top:12px">${extra}${statRows(st)}</div></div>
+      <div style="margin-top:12px">${extra}${statRows(st,cfg.etiquetaConteo)}</div></div>
       <div class="card tl-card"><div class="legend"><span>cada punto = una ${cfg.unidad} (15 días)</span></div>
       ${timelineLanes([{label:cfg.subtitulo,color,eventos:proc.eventos}])}</div>`;
   }
@@ -161,9 +167,11 @@ function render(data){
     seccionOrigen(data)+
     seccionProceso(2,"Copiar stock a GitHub",proc.copiar_github,"var(--ok)",
       {subtitulo:"Descarga y guardado en GitHub",etiqueta:"Última ejecución",unidad:"ejecución",okH:1,
+       etiquetaConteo:"Ejecuciones",contarCambios:true,
        pendiente:"Este proceso corre en el repo privado; para que reporte aquí hay que darle un pequeño ajuste (lo puede montar Claude cuando quieras)."})+
     seccionProceso(3,"Subir stock a Tradeinn",proc.subir_tradeinn,"var(--tradeinn)",
       {subtitulo:"Fichero en el FTP de Tradeinn",etiqueta:"Última subida detectada",unidad:"subida",okH:2,
+       etiquetaConteo:"Subidas",
        pendiente:"Falta añadir el Secret TRADEINN_CONN (y montar la subida). Cuando esté, aquí verás cada subida."});
 }
 
@@ -171,7 +179,13 @@ async function cargar(){
   try{
     const r=await fetch("historial.json?t="+Date.now(),{cache:"no-store"});
     if(!r.ok) throw new Error("HTTP "+r.status);
-    render(await r.json());
+    const data=await r.json();
+    data.procesos=data.procesos||{};
+    try{
+      const r2=await fetch("estado_copiar.json?t="+Date.now(),{cache:"no-store"});
+      if(r2.ok){ const ec=await r2.json(); if(ec&&ec.eventos&&ec.eventos.length) data.procesos.copiar_github=ec; }
+    }catch(_){}
+    render(data);
   }catch(e){
     document.getElementById("content").innerHTML='<div class="err">No se pudo cargar el historial todavía.<br><small>'+e+'</small></div>';
   }
