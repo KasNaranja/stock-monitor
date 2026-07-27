@@ -1,0 +1,379 @@
+{
+  "ficheros": {
+    "Stock Total.csv": {
+      "eventos": [
+        {
+          "mtime": "2026-07-17T08:51:51+02:00",
+          "size": null,
+          "detectado": "2026-07-17T08:51:51+02:00",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-21T09:44:12Z",
+          "size": null,
+          "detectado": "2026-07-21T09:44:12Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-21T15:57:25Z",
+          "size": null,
+          "detectado": "2026-07-21T15:57:25Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-22T09:41:41Z",
+          "size": null,
+          "detectado": "2026-07-22T09:41:41Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-23T16:04:48Z",
+          "size": null,
+          "detectado": "2026-07-23T16:04:48Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-24T09:30:24Z",
+          "size": null,
+          "detectado": "2026-07-24T09:30:24Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-27T10:02:05+02:00",
+          "size": null,
+          "detectado": "2026-07-27T10:02:05+02:00",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-27T10:04:28+02:00",
+          "size": null,
+          "detectado": "2026-07-27T10:04:28+02:00",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-27T10:51:36Z",
+          "size": null,
+          "detectado": "2026-07-27T10:51:36Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-27T14:50:12+00:00",
+          "size": 42356611,
+          "detectado": "2026-07-27T15:57:48+00:00"
+        }
+      ],
+      "actual": {
+        "mtime": "2026-07-27T14:50:12+00:00",
+        "size": 42356611
+      }
+    },
+    "Stock Marketplaces.csv": {
+      "eventos": [
+        {
+          "mtime": "2026-07-17T07:33:28Z",
+          "size": null,
+          "detectado": "2026-07-17T07:33:28Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-17T08:51:51+02:00",
+          "size": null,
+          "detectado": "2026-07-17T08:51:51+02:00",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-17T12:19:35Z",
+          "size": null,
+          "detectado": "2026-07-17T12:19:35Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-17T16:43:12Z",
+          "size": null,
+          "detectado": "2026-07-17T16:43:12Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-17T20:16:47Z",
+          "size": null,
+          "detectado": "2026-07-17T20:16:47Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-17T23:32:58Z",
+          "size": null,
+          "detectado": "2026-07-17T23:32:58Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-18T07:11:17Z",
+          "size": null,
+          "detectado": "2026-07-18T07:11:17Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-18T11:19:05Z",
+          "size": null,
+          "detectado": "2026-07-18T11:19:05Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-18T14:40:44Z",
+          "size": null,
+          "detectado": "2026-07-18T14:40:44Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-18T18:08:51Z",
+          "size": null,
+          "detectado": "2026-07-18T18:08:51Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-18T21:11:05Z",
+          "size": null,
+          "detectado": "2026-07-18T21:11:05Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-19T06:45:46Z",
+          "size": null,
+          "detectado": "2026-07-19T06:45:46Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-19T11:21:22Z",
+          "size": null,
+          "detectado": "2026-07-19T11:21:22Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-19T14:42:30Z",
+          "size": null,
+          "detectado": "2026-07-19T14:42:30Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-19T18:10:37Z",
+          "size": null,
+          "detectado": "2026-07-19T18:10:37Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-19T21:33:15Z",
+          "size": null,
+          "detectado": "2026-07-19T21:33:15Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-20T08:29:12Z",
+          "size": null,
+          "detectado": "2026-07-20T08:29:12Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-20T15:32:08Z",
+          "size": null,
+          "detectado": "2026-07-20T15:32:08Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-20T20:50:01Z",
+          "size": null,
+          "detectado": "2026-07-20T20:50:01Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-21T00:15:46Z",
+          "size": null,
+          "detectado": "2026-07-21T00:15:46Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-21T09:44:12Z",
+          "size": null,
+          "detectado": "2026-07-21T09:44:12Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-21T15:57:25Z",
+          "size": null,
+          "detectado": "2026-07-21T15:57:25Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-21T20:40:06Z",
+          "size": null,
+          "detectado": "2026-07-21T20:40:06Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-22T00:09:19Z",
+          "size": null,
+          "detectado": "2026-07-22T00:09:19Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-22T09:41:41Z",
+          "size": null,
+          "detectado": "2026-07-22T09:41:41Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-22T15:54:03Z",
+          "size": null,
+          "detectado": "2026-07-22T15:54:03Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-22T18:15:27+02:00",
+          "size": null,
+          "detectado": "2026-07-22T18:15:27+02:00",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-22T20:19:54Z",
+          "size": null,
+          "detectado": "2026-07-22T20:19:54Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-22T23:48:00Z",
+          "size": null,
+          "detectado": "2026-07-22T23:48:00Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-23T09:15:26Z",
+          "size": null,
+          "detectado": "2026-07-23T09:15:26Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-23T16:04:48Z",
+          "size": null,
+          "detectado": "2026-07-23T16:04:48Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-23T20:35:49Z",
+          "size": null,
+          "detectado": "2026-07-23T20:35:49Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-24T00:14:54Z",
+          "size": null,
+          "detectado": "2026-07-24T00:14:54Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-24T09:30:24Z",
+          "size": null,
+          "detectado": "2026-07-24T09:30:24Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-24T15:17:53Z",
+          "size": null,
+          "detectado": "2026-07-24T15:17:53Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-24T20:06:22Z",
+          "size": null,
+          "detectado": "2026-07-24T20:06:22Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-25T00:14:16Z",
+          "size": null,
+          "detectado": "2026-07-25T00:14:16Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-25T07:45:12Z",
+          "size": null,
+          "detectado": "2026-07-25T07:45:12Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-25T11:50:06Z",
+          "size": null,
+          "detectado": "2026-07-25T11:50:06Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-25T15:47:17Z",
+          "size": null,
+          "detectado": "2026-07-25T15:47:17Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-25T20:14:12Z",
+          "size": null,
+          "detectado": "2026-07-25T20:14:12Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-25T23:45:57Z",
+          "size": null,
+          "detectado": "2026-07-25T23:45:57Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-26T09:00:16Z",
+          "size": null,
+          "detectado": "2026-07-26T09:00:16Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-26T12:44:48Z",
+          "size": null,
+          "detectado": "2026-07-26T12:44:48Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-26T16:30:59Z",
+          "size": null,
+          "detectado": "2026-07-26T16:30:59Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-26T20:32:19Z",
+          "size": null,
+          "detectado": "2026-07-26T20:32:19Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-27T10:02:05+02:00",
+          "size": null,
+          "detectado": "2026-07-27T10:02:05+02:00",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-27T10:04:28+02:00",
+          "size": null,
+          "detectado": "2026-07-27T10:04:28+02:00",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-27T10:51:36Z",
+          "size": null,
+          "detectado": "2026-07-27T10:51:36Z",
+          "aprox": true
+        },
+        {
+          "mtime": "2026-07-27T15:36:09+00:00",
+          "size": 458745,
+          "detectado": "2026-07-27T15:57:48+00:00"
+        }
+      ],
+      "actual": {
+        "mtime": "2026-07-27T15:36:09+00:00",
+        "size": 458745
+      }
+    }
+  },
+  "ultima_comprobacion": "2026-07-27T15:57:48+00:00"
+}

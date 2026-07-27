@@ -1,0 +1,38 @@
+name: Monitorizar stock Toni Pons
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # cada 30 minutos (UTC)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install --quiet paramiko
+      - name: Registrar historial
+        env:
+          SFTP_CONN: ${{ secrets.SFTP_CONN }}
+        run: python registrar_historial.py
+      - name: Guardar historial
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add historial.json
+          if git diff --cached --quiet; then
+            echo "Sin cambios."
+          else
+            git commit -m "Actualizar historial ($(date -u '+%Y-%m-%d %H:%M UTC'))"
+            git push
+          fi

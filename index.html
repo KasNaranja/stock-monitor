@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monitor stock Toni Pons</title>
+<style>
+  :root{
+    --bg:#f5f6f8; --card:#ffffff; --text:#1c2430; --muted:#6b7684;
+    --border:#e3e7ec; --accent:#2f6df6; --ok:#1a9e5f; --warn:#e0902a; --bad:#d64545;
+    --total:#2f6df6; --market:#8b5cf6;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{ --bg:#0f141a; --card:#171e26; --text:#e6ebf1; --muted:#93a0ad;
+      --border:#232c37; --accent:#5b8cff; --total:#5b8cff; --market:#a78bfa; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+  .wrap{max-width:960px;margin:0 auto;padding:20px 16px 60px}
+  h1{font-size:1.35rem;margin:0 0 2px}
+  .sub{color:var(--muted);font-size:.9rem;margin-bottom:20px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media (max-width:640px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+  .card h2{font-size:1rem;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block;flex:none}
+  .big{font-size:1.5rem;font-weight:700;margin:2px 0}
+  .muted{color:var(--muted);font-size:.85rem}
+  .row{display:flex;justify-content:space-between;gap:8px;padding:4px 0;font-size:.9rem}
+  .row span:first-child{color:var(--muted)}
+  .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:.78rem;font-weight:600}
+  .b-ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+  .b-warn{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+  .b-bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+  .tl-card{margin-top:14px}
+  .legend{display:flex;gap:16px;font-size:.85rem;color:var(--muted);margin-bottom:8px;flex-wrap:wrap}
+  .legend span{display:flex;align-items:center;gap:6px}
+  svg{width:100%;height:auto;display:block;overflow:visible}
+  .foot{color:var(--muted);font-size:.8rem;margin-top:24px;text-align:center}
+  .err{background:color-mix(in srgb,var(--bad) 12%,transparent);border:1px solid var(--bad);
+    color:var(--bad);padding:12px;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>📦 Monitor de stock · Toni Pons</h1>
+  <div class="sub" id="sub">Cargando…</div>
+  <div id="content"></div>
+  <div class="foot">Se actualiza solo cada 30 min · esta página se refresca sola cada minuto.</div>
+</div>
+<script>
+const FILES=[
+  {key:"Stock Total.csv", label:"Stock Total", color:"var(--total)"},
+  {key:"Stock Marketplaces.csv", label:"Stock Marketplaces", color:"var(--market)"},
+];
+const DAY=864e5;
+
+function haceTexto(d){
+  const s=Math.max(0,(Date.now()-d.getTime())/1000);
+  if(s<90) return "hace "+Math.round(s)+" s";
+  const m=s/60; if(m<90) return "hace "+Math.round(m)+" min";
+  const h=m/60; if(h<48) return "hace "+Math.round(h)+" h";
+  return "hace "+Math.round(h/24)+" días";
+}
+function fmtFecha(d){
+  return d.toLocaleString("es-ES",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"});
+}
+function fmtTam(b){
+  if(!b) return "—";
+  if(b>=1e6) return (b/1e6).toFixed(1)+" MB";
+  if(b>=1e3) return Math.round(b/1e3)+" KB";
+  return b+" B";
+}
+function badgeFrescura(d){
+  const h=(Date.now()-d.getTime())/36e5;
+  if(h<26) return '<span class="badge b-ok">al día</span>';
+  if(h<50) return '<span class="badge b-warn">'+Math.round(h)+' h</span>';
+  return '<span class="badge b-bad">'+Math.round(h/24)+' días sin cambiar</span>';
+}
+
+function statsEventos(ev){
+  const now=Date.now();
+  const t=ev.map(e=>new Date(e.mtime).getTime()).sort((a,b)=>a-b);
+  const en=(dias)=>t.filter(x=>x>=now-dias*DAY).length;
+  let media="—";
+  const rec=t.filter(x=>x>=now-15*DAY);
+  if(rec.length>=2){
+    let sum=0; for(let i=1;i<rec.length;i++) sum+=rec[i]-rec[i-1];
+    const avgH=(sum/(rec.length-1))/36e5;
+    media = avgH<1 ? Math.round(avgH*60)+" min" : avgH.toFixed(1)+" h";
+  }
+  return {d1:en(1),d7:en(7),d15:en(15),media};
+}
+
+function timeline(data){
+  const now=Date.now(), start=now-15*DAY;
+  const W=920,H=140,padL=8,padR=8,padT=28,laneH=34,gap=18;
+  const x=t=>padL+(t-start)/(now-start)*(W-padL-padR);
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Línea de tiempo de actualizaciones">`;
+  // rejilla de días
+  for(let i=0;i<=15;i++){
+    const t=start+i*DAY, px=x(t);
+    svg+=`<line x1="${px}" y1="${padT}" x2="${px}" y2="${padT+2*laneH+gap}" stroke="var(--border)" stroke-width="1"/>`;
+    if(i%3===0){
+      const d=new Date(t);
+      svg+=`<text x="${px}" y="${padT-10}" fill="var(--muted)" font-size="11" text-anchor="middle">${d.getDate()}/${d.getMonth()+1}</text>`;
+    }
+  }
+  FILES.forEach((f,idx)=>{
+    const y=padT+idx*(laneH+gap)+laneH/2;
+    const col=idx===0?"var(--total)":"var(--market)";
+    svg+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--border)" stroke-width="1"/>`;
+    svg+=`<text x="${padL}" y="${y-laneH/2-2}" fill="var(--muted)" font-size="11">${f.label}</text>`;
+    const fd=data.ficheros[f.key];
+    const ev=(fd&&fd.eventos||[]).filter(e=>new Date(e.mtime).getTime()>=start);
+    ev.forEach(e=>{
+      const px=x(new Date(e.mtime).getTime());
+      svg+=`<circle cx="${px}" cy="${y}" r="4.5" fill="${col}"><title>${new Date(e.mtime).toLocaleString("es-ES")} · ${fmtTam(e.size)}</title></circle>`;
+    });
+  });
+  svg+=`</svg>`;
+  return svg;
+}
+
+function render(data){
+  const chk=new Date(data.ultima_comprobacion);
+  document.getElementById("sub").innerHTML=
+    "Última comprobación del robot: <b>"+fmtFecha(chk)+"</b> ("+haceTexto(chk)+")";
+
+  let cards="";
+  FILES.forEach((f,idx)=>{
+    const fd=data.ficheros[f.key]||{eventos:[],actual:{}};
+    const upd=fd.actual&&fd.actual.mtime?new Date(fd.actual.mtime):null;
+    const st=statsEventos(fd.eventos||[]);
+    const col=idx===0?"var(--total)":"var(--market)";
+    cards+=`<div class="card">
+      <h2><span class="dot" style="background:${col}"></span>${f.label}</h2>
+      <div class="muted">Última actualización</div>
+      <div class="big">${upd?haceTexto(upd):"—"}</div>
+      <div class="muted">${upd?fmtFecha(upd):""} ${upd?badgeFrescura(upd):""}</div>
+      <div style="margin-top:12px">
+        <div class="row"><span>Tamaño</span><span>${fd.actual&&fd.actual.size?fmtTam(fd.actual.size):"—"}</span></div>
+        <div class="row"><span>Cambios últimas 24 h</span><span>${st.d1}</span></div>
+        <div class="row"><span>Cambios últimos 7 días</span><span>${st.d7}</span></div>
+        <div class="row"><span>Cambios últimos 15 días</span><span>${st.d15}</span></div>
+        <div class="row"><span>Intervalo medio</span><span>${st.media}</span></div>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById("content").innerHTML=
+    '<div class="grid">'+cards+'</div>'+
+    '<div class="card tl-card"><h2>Línea de tiempo (últimos 15 días)</h2>'+
+    '<div class="legend"><span><span class="dot" style="background:var(--total)"></span>Stock Total</span>'+
+    '<span><span class="dot" style="background:var(--market)"></span>Stock Marketplaces</span>'+
+    '<span>cada punto = una actualización</span></div>'+
+    timeline(data)+'</div>';
+}
+
+async function cargar(){
+  try{
+    const r=await fetch("historial.json?t="+Date.now(),{cache:"no-store"});
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    render(await r.json());
+  }catch(e){
+    document.getElementById("content").innerHTML=
+      '<div class="err">No se pudo cargar el historial todavía. Si acabas de crear el panel, '+
+      'espera a que el robot se ejecute la primera vez.<br><small>'+e+'</small></div>';
+  }
+}
+cargar();
+setInterval(cargar,60000);
+</script>
+</body>
+</html>
