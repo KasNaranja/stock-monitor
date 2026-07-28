@@ -10,8 +10,10 @@ Los datos de conexion vienen de Secrets (formato host|usuario|contrasena); nada
 sensible queda en el codigo. Se ejecuta cada 30 min en GitHub Actions.
 """
 
+import csv
 import datetime
 import ftplib
+import io
 import json
 import os
 import re
@@ -84,9 +86,7 @@ def consultar_tradeinn(host, user, pwd, dias=16):
             nombres += f.nlst(carpeta)
         except Exception:
             pass
-    f.quit()
-
-    subidas = {}
+    subidas = {}   # dt -> ruta completa (para poder descargar el fichero)
     for n in nombres:
         base = n.split("/")[-1]
         m = PAT_TRADEINN.search(base)
@@ -94,19 +94,43 @@ def consultar_tradeinn(host, user, pwd, dias=16):
             continue
         dt = datetime.datetime.strptime(m.group(1) + m.group(2), "%Y%m%d%H%M").replace(
             tzinfo=datetime.timezone.utc)
-        subidas.setdefault(dt, base)  # una entrada por fecha de subida
+        subidas.setdefault(dt, n)  # una entrada por fecha de subida
     if not subidas:
+        f.quit()
         return None
 
     ordenadas = sorted(subidas.items())
-    ultima_dt, ultima_nombre = ordenadas[-1]
+    ultima_dt, ultima_ruta = ordenadas[-1]
+    ultima_nombre = ultima_ruta.split("/")[-1]
+
+    # Descarga el ultimo fichero subido para contar SKUs y sumar el stock.
+    num_skus = total_stock = None
+    try:
+        buf = io.BytesIO()
+        f.retrbinary("RETR " + ultima_ruta, buf.write)
+        filas = list(csv.reader(buf.getvalue().decode("utf-8-sig", "replace").splitlines(),
+                                delimiter=","))
+        datos = filas[1:] if filas and filas[0][:1] == ["SKU"] else filas
+        num_skus = len(datos)
+        total_stock = 0
+        for r in datos:
+            if len(r) > 2:
+                try:
+                    total_stock += int(r[2])
+                except ValueError:
+                    pass
+    except Exception as e:
+        print("Aviso: no se pudo leer el contenido del ultimo fichero:", e, file=sys.stderr)
+    f.quit()
+
     corte = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=dias)
-    eventos = [{"mtime": a_iso(dt), "fichero": base}
-               for dt, base in ordenadas if dt >= corte]
-    return {
-        "actual": {"ultimo_fichero": ultima_nombre, "mtime": a_iso(ultima_dt)},
-        "eventos": eventos,
-    }
+    eventos = [{"mtime": a_iso(dt), "fichero": ruta.split("/")[-1]}
+               for dt, ruta in ordenadas if dt >= corte]
+    actual = {"ultimo_fichero": ultima_nombre, "mtime": a_iso(ultima_dt)}
+    if num_skus is not None:
+        actual["num_skus"] = num_skus
+        actual["total_stock"] = total_stock
+    return {"actual": actual, "eventos": eventos}
 
 
 def main():

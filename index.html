@@ -161,6 +161,8 @@ function seccionProceso(n,titulo,proc,color,cfg){
       extra+=`<div class="row"><span>Copias con stock nuevo (15 d)</span><span>${copias}</span></div>`;
     }
     if(ult.ultimo_fichero) extra+=`<div class="row"><span>Último fichero</span><span style="font-size:.82rem">${ult.ultimo_fichero}</span></div>`;
+    if(ult.num_skus!=null) extra+=`<div class="row"><span>SKUs subidos</span><span>${ult.num_skus.toLocaleString('es-ES')}</span></div>`;
+    if(ult.total_stock!=null) extra+=`<div class="row"><span>Stock total (uds)</span><span>${ult.total_stock.toLocaleString('es-ES')}</span></div>`;
     if(ult.size) extra+=`<div class="row"><span>Tamaño</span><span>${fmtTam(ult.size)}</span></div>`;
     if(ult.num_ficheros) extra+=`<div class="row"><span>Ficheros en el FTP</span><span>${ult.num_ficheros}</span></div>`;
     cuerpo=`<div class="card"><h3><span class="dot" style="background:${color}"></span>${cfg.subtitulo}</h3>
