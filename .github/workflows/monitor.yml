@@ -1,8 +1,9 @@
 name: Monitorizar stock Toni Pons
 
 on:
-  schedule:
-    - cron: "*/30 * * * *"   # cada 30 minutos (UTC)
+  # El panel lo actualiza ahora el proceso fiable del repo Tradeinn (cada 30 min
+  # via cron-job.org), asi no dependemos del cron poco fiable de GitHub.
+  # Se deja el disparo manual por si se quiere refrescar a mano.
   workflow_dispatch: {}
 
 permissions:
