@@ -14,6 +14,7 @@ import datetime
 import ftplib
 import json
 import os
+import re
 import sys
 
 import paramiko
@@ -62,42 +63,45 @@ def consultar_origen(host, user, pwd):
 # ---------------------------------------------------------------------------
 # Seccion 3: destino (FTP Tradeinn)
 # ---------------------------------------------------------------------------
-def consultar_tradeinn(host, user, pwd):
-    """Devuelve el fichero mas reciente subido al FTP de Tradeinn (ignora 'log')."""
+PAT_TRADEINN = re.compile(r"TRADEINN_(\d{8})_(\d{4})")
+
+
+def consultar_tradeinn(host, user, pwd, dias=16):
+    """Reconstruye el historial de subidas leyendo la carpeta 'log' de Tradeinn.
+
+    Tradeinn procesa cada fichero y lo mueve a 'log', asi que la raiz suele estar
+    vacia. El nombre de cada fichero lleva la fecha/hora de subida
+    (TRADEINN_YYYYMMDD_HHMM), que es la fuente fiable del historial.
+    """
     f = ftplib.FTP(host, timeout=40)
     f.login(user, pwd)
-    ficheros = []
     try:
-        for nombre, facts in f.mlsd():
-            if facts.get("type") != "file":
-                continue
-            modify = facts.get("modify")  # YYYYMMDDHHMMSS (UTC)
-            if not modify:
-                continue
-            dt = datetime.datetime.strptime(modify, "%Y%m%d%H%M%S").replace(
-                tzinfo=datetime.timezone.utc)
-            ficheros.append((nombre, dt, int(facts.get("size", 0))))
-    except ftplib.error_perm:
-        # Fallback si el servidor no soporta MLSD
-        nombres = f.nlst()
-        for nombre in nombres:
-            if nombre in (".", "..", "log"):
-                continue
-            try:
-                r = f.sendcmd("MDTM " + nombre)  # 213 YYYYMMDDHHMMSS
-                dt = datetime.datetime.strptime(r.split()[1], "%Y%m%d%H%M%S").replace(
-                    tzinfo=datetime.timezone.utc)
-                size = f.size(nombre) or 0
-                ficheros.append((nombre, dt, size))
-            except Exception:
-                continue
+        nombres = f.nlst("log")
+    except Exception:
+        nombres = []
     f.quit()
-    if not ficheros:
+
+    subidas = {}
+    for n in nombres:
+        base = n.split("/")[-1]
+        m = PAT_TRADEINN.search(base)
+        if not m:
+            continue
+        dt = datetime.datetime.strptime(m.group(1) + m.group(2), "%Y%m%d%H%M").replace(
+            tzinfo=datetime.timezone.utc)
+        subidas.setdefault(dt, base)  # una entrada por fecha de subida
+    if not subidas:
         return None
-    ficheros.sort(key=lambda x: x[1])
-    nombre, dt, size = ficheros[-1]
-    return {"ultimo_fichero": nombre, "mtime": a_iso(dt), "size": size,
-            "num_ficheros": len(ficheros)}
+
+    ordenadas = sorted(subidas.items())
+    ultima_dt, ultima_nombre = ordenadas[-1]
+    corte = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=dias)
+    eventos = [{"mtime": a_iso(dt), "fichero": base}
+               for dt, base in ordenadas if dt >= corte]
+    return {
+        "actual": {"ultimo_fichero": ultima_nombre, "mtime": a_iso(ultima_dt)},
+        "eventos": eventos,
+    }
 
 
 def main():
@@ -124,13 +128,9 @@ def main():
     if tconn:
         try:
             info = consultar_tradeinn(*tconn)
-            proc = data["procesos"].setdefault("subir_tradeinn", {"eventos": []})
-            ev = proc.setdefault("eventos", [])
             if info:
-                proc["actual"] = info
-                if not ev or ev[-1].get("mtime") != info["mtime"]:
-                    ev.append({"mtime": info["mtime"], "fichero": info["ultimo_fichero"],
-                               "size": info["size"], "detectado": data["ultima_comprobacion"]})
+                # La carpeta 'log' es la fuente completa: se reconstruye entera.
+                data["procesos"]["subir_tradeinn"] = info
         except Exception as e:
             print("Aviso: no se pudo leer el FTP de Tradeinn:", e, file=sys.stderr)
 
