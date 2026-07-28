@@ -87,20 +87,34 @@ function statsEventos(ev){
     const h=(s/(rec.length-1))/36e5; media=h<1?Math.round(h*60)+" min":h.toFixed(1)+" h"; }
   return {d1:en(1),d7:en(7),d15:en(15),media};
 }
-function timelineLanes(lanes){
-  const now=Date.now(), start=now-15*DAY, W=920,padL=8,padR=8,padT=26,laneH=30,gap=16;
-  const H=padT+lanes.length*(laneH+gap);
-  const x=t=>padL+(t-start)/(now-start)*(W-padL-padR);
-  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Línea de tiempo">`;
-  for(let i=0;i<=15;i++){ const t=start+i*DAY,px=x(t);
-    s+=`<line x1="${px}" y1="${padT}" x2="${px}" y2="${H-6}" stroke="var(--border)"/>`;
-    if(i%3===0){const d=new Date(t); s+=`<text x="${px}" y="${padT-9}" fill="var(--muted)" font-size="11" text-anchor="middle">${d.getDate()}/${d.getMonth()+1}</text>`;}}
-  lanes.forEach((ln,idx)=>{ const y=padT+idx*(laneH+gap)+laneH/2;
-    s+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--border)"/>`;
-    s+=`<text x="${padL}" y="${y-laneH/2-1}" fill="var(--muted)" font-size="11">${ln.label}</text>`;
-    (ln.eventos||[]).filter(e=>new Date(e.mtime).getTime()>=start).forEach(e=>{
-      const px=x(new Date(e.mtime).getTime());
-      s+=`<circle cx="${px}" cy="${y}" r="4.5" fill="${ln.color}"><title>${new Date(e.mtime).toLocaleString("es-ES")} · ${fmtTam(e.size)}</title></circle>`;});});
+// Gráfico de barras: nº de eventos por día (últimos 15 días). Admite varias
+// series (barras agrupadas), p.ej. Stock Total + Marketplaces.
+function histograma(series){
+  const N=15, now=Date.now(), dayMs=[], labels=[];
+  for(let i=N-1;i>=0;i--){ const d=new Date(now-i*DAY); d.setHours(0,0,0,0);
+    dayMs.push(d.getTime()); labels.push(d.getDate()+"/"+(d.getMonth()+1)); }
+  const counts=series.map(se=>{ const b=new Array(N).fill(0);
+    (se.eventos||[]).forEach(e=>{ const t=new Date(e.mtime).getTime();
+      for(let i=0;i<N;i++){ if(t>=dayMs[i]&&t<dayMs[i]+DAY){ b[i]++; break; } } });
+    return b; });
+  const maxV=Math.max(1,...counts.flat());
+  const W=920,H=170,padL=30,padR=8,padT=14,padB=22;
+  const bw=(W-padL-padR)/N, ns=series.length, gp=bw*0.16, ig=2;
+  const barW=Math.max(2,(bw-2*gp-(ns-1)*ig)/ns);
+  let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Barras por día">`;
+  // eje Y (máximo y mitad)
+  [maxV, Math.round(maxV/2), 0].forEach(v=>{
+    const y=H-padB-(H-padT-padB)*(v/maxV);
+    s+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--border)" stroke-dasharray="${v?'2 4':''}"/>`;
+    s+=`<text x="${padL-6}" y="${y+3}" fill="var(--muted)" font-size="10" text-anchor="end">${v}</text>`; });
+  for(let i=0;i<N;i++){
+    const gx=padL+i*bw+gp;
+    series.forEach((se,si)=>{
+      const v=counts[si][i]; if(!v) return;
+      const h=(H-padT-padB)*(v/maxV), x=gx+si*(barW+ig), y=H-padB-h;
+      s+=`<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="2" fill="${se.color}"><title>${se.label} · ${labels[i]}: ${v}</title></rect>`; });
+    if(i%3===0||i===N-1) s+=`<text x="${padL+i*bw+bw/2}" y="${H-6}" fill="var(--muted)" font-size="11" text-anchor="middle">${labels[i]}</text>`;
+  }
   return s+`</svg>`;
 }
 function statRows(st,lbl){
@@ -129,7 +143,7 @@ function seccionOrigen(data){
     <div class="card tl-card"><div class="legend">
       <span><span class="dot" style="background:var(--total)"></span>Stock Total</span>
       <span><span class="dot" style="background:var(--market)"></span>Stock Marketplaces</span>
-      <span>cada punto = una actualización (15 días)</span></div>${timelineLanes(lanes2)}</div></section>`;
+      <span>barras = actualizaciones por día (15 días)</span></div>${histograma(lanes2)}</div></section>`;
 }
 
 function seccionProceso(n,titulo,proc,color,cfg){
@@ -153,8 +167,8 @@ function seccionProceso(n,titulo,proc,color,cfg){
       <div class="muted">${cfg.etiqueta}</div><div class="big">${haceTexto(upd)}</div>
       <div class="muted">${fmtFecha(upd)} ${badgeFrescura(upd,cfg.okH)}</div>
       <div style="margin-top:12px">${extra}${statRows(st,cfg.etiquetaConteo)}</div></div>
-      <div class="card tl-card"><div class="legend"><span>cada punto = una ${cfg.unidad} (15 días)</span></div>
-      ${timelineLanes([{label:cfg.subtitulo,color,eventos:proc.eventos}])}</div>`;
+      <div class="card tl-card"><div class="legend"><span>barras = ${cfg.etiquetaConteo.toLowerCase()} por día (15 días)</span></div>
+      ${histograma([{label:cfg.subtitulo,color,eventos:proc.eventos}])}</div>`;
   }
   return `<section><h2 class="sec"><span class="num">${n}</span>${titulo}</h2>${cuerpo}</section>`;
 }
