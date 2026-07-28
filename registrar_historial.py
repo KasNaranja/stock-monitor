@@ -75,10 +75,15 @@ def consultar_tradeinn(host, user, pwd, dias=16):
     """
     f = ftplib.FTP(host, timeout=40)
     f.login(user, pwd)
-    try:
-        nombres = f.nlst("log")
-    except Exception:
-        nombres = []
+    # Lee la RAIZ (subidas recien hechas, aun sin procesar) Y la carpeta 'log'
+    # (ya procesadas). Asi el panel ve la ultima subida al instante, sin esperar
+    # a que Tradeinn mueva el fichero a 'log'.
+    nombres = []
+    for carpeta in (".", "log"):
+        try:
+            nombres += f.nlst(carpeta)
+        except Exception:
+            pass
     f.quit()
 
     subidas = {}
