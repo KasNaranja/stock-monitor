@@ -529,11 +529,16 @@
       "mtime": "2026-07-30T11:01:22+00:00",
       "ok": true,
       "cambio": true
+    },
+    {
+      "mtime": "2026-07-30T11:31:12+00:00",
+      "ok": true,
+      "cambio": false
     }
   ],
   "actual": {
-    "mtime": "2026-07-30T11:01:22+00:00",
+    "mtime": "2026-07-30T11:31:12+00:00",
     "ok": true,
-    "cambio": true
+    "cambio": false
   }
 }
