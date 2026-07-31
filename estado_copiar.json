@@ -749,11 +749,16 @@
       "mtime": "2026-07-31T09:01:32+00:00",
       "ok": true,
       "cambio": true
+    },
+    {
+      "mtime": "2026-07-31T09:31:10+00:00",
+      "ok": true,
+      "cambio": false
     }
   ],
   "actual": {
-    "mtime": "2026-07-31T09:01:32+00:00",
+    "mtime": "2026-07-31T09:31:10+00:00",
     "ok": true,
-    "cambio": true
+    "cambio": false
   }
 }
