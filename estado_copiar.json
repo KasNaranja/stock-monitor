@@ -1509,11 +1509,16 @@
       "mtime": "2026-08-03T13:01:36+00:00",
       "ok": true,
       "cambio": true
+    },
+    {
+      "mtime": "2026-08-03T13:31:32+00:00",
+      "ok": true,
+      "cambio": false
     }
   ],
   "actual": {
-    "mtime": "2026-08-03T13:01:36+00:00",
+    "mtime": "2026-08-03T13:31:32+00:00",
     "ok": true,
-    "cambio": true
+    "cambio": false
   }
 }
