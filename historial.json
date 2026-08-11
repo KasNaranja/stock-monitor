@@ -940,208 +940,16 @@
       }
     }
   },
-  "ultima_comprobacion": "2026-08-11T20:01:31+00:00",
+  "ultima_comprobacion": "2026-08-11T20:31:32+00:00",
   "procesos": {
     "subir_tradeinn": {
       "actual": {
-        "ultimo_fichero": "TRADEINN_20260811_2001.csv",
-        "mtime": "2026-08-11T20:01:00+00:00",
+        "ultimo_fichero": "TRADEINN_20260811_2031.csv",
+        "mtime": "2026-08-11T20:31:00+00:00",
         "num_skus": 22799,
         "total_stock": 345791
       },
       "eventos": [
-        {
-          "mtime": "2026-08-08T00:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0001.csv"
-        },
-        {
-          "mtime": "2026-08-08T00:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0031.csv"
-        },
-        {
-          "mtime": "2026-08-08T01:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0101.csv"
-        },
-        {
-          "mtime": "2026-08-08T01:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0131.csv"
-        },
-        {
-          "mtime": "2026-08-08T02:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0201.csv"
-        },
-        {
-          "mtime": "2026-08-08T02:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0231.csv"
-        },
-        {
-          "mtime": "2026-08-08T03:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0301.csv"
-        },
-        {
-          "mtime": "2026-08-08T03:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0331.csv"
-        },
-        {
-          "mtime": "2026-08-08T04:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0401.csv"
-        },
-        {
-          "mtime": "2026-08-08T04:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0431.csv"
-        },
-        {
-          "mtime": "2026-08-08T05:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0501.csv"
-        },
-        {
-          "mtime": "2026-08-08T05:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0531.csv"
-        },
-        {
-          "mtime": "2026-08-08T06:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0601.csv"
-        },
-        {
-          "mtime": "2026-08-08T06:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0631.csv"
-        },
-        {
-          "mtime": "2026-08-08T07:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0701.csv"
-        },
-        {
-          "mtime": "2026-08-08T07:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0731.csv"
-        },
-        {
-          "mtime": "2026-08-08T08:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0801.csv"
-        },
-        {
-          "mtime": "2026-08-08T08:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0831.csv"
-        },
-        {
-          "mtime": "2026-08-08T09:01:00+00:00",
-          "fichero": "TRADEINN_20260808_0901.csv"
-        },
-        {
-          "mtime": "2026-08-08T09:31:00+00:00",
-          "fichero": "TRADEINN_20260808_0931.csv"
-        },
-        {
-          "mtime": "2026-08-08T10:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1001.csv"
-        },
-        {
-          "mtime": "2026-08-08T10:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1031.csv"
-        },
-        {
-          "mtime": "2026-08-08T11:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1101.csv"
-        },
-        {
-          "mtime": "2026-08-08T11:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1131.csv"
-        },
-        {
-          "mtime": "2026-08-08T12:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1201.csv"
-        },
-        {
-          "mtime": "2026-08-08T12:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1231.csv"
-        },
-        {
-          "mtime": "2026-08-08T13:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1301.csv"
-        },
-        {
-          "mtime": "2026-08-08T13:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1331.csv"
-        },
-        {
-          "mtime": "2026-08-08T14:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1401.csv"
-        },
-        {
-          "mtime": "2026-08-08T14:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1431.csv"
-        },
-        {
-          "mtime": "2026-08-08T15:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1501.csv"
-        },
-        {
-          "mtime": "2026-08-08T15:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1531.csv"
-        },
-        {
-          "mtime": "2026-08-08T16:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1601.csv"
-        },
-        {
-          "mtime": "2026-08-08T16:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1631.csv"
-        },
-        {
-          "mtime": "2026-08-08T17:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1701.csv"
-        },
-        {
-          "mtime": "2026-08-08T17:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1731.csv"
-        },
-        {
-          "mtime": "2026-08-08T18:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1801.csv"
-        },
-        {
-          "mtime": "2026-08-08T18:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1831.csv"
-        },
-        {
-          "mtime": "2026-08-08T19:01:00+00:00",
-          "fichero": "TRADEINN_20260808_1901.csv"
-        },
-        {
-          "mtime": "2026-08-08T19:31:00+00:00",
-          "fichero": "TRADEINN_20260808_1931.csv"
-        },
-        {
-          "mtime": "2026-08-08T20:01:00+00:00",
-          "fichero": "TRADEINN_20260808_2001.csv"
-        },
-        {
-          "mtime": "2026-08-08T20:31:00+00:00",
-          "fichero": "TRADEINN_20260808_2031.csv"
-        },
-        {
-          "mtime": "2026-08-08T21:01:00+00:00",
-          "fichero": "TRADEINN_20260808_2101.csv"
-        },
-        {
-          "mtime": "2026-08-08T21:31:00+00:00",
-          "fichero": "TRADEINN_20260808_2131.csv"
-        },
-        {
-          "mtime": "2026-08-08T22:01:00+00:00",
-          "fichero": "TRADEINN_20260808_2201.csv"
-        },
-        {
-          "mtime": "2026-08-08T22:31:00+00:00",
-          "fichero": "TRADEINN_20260808_2231.csv"
-        },
-        {
-          "mtime": "2026-08-08T23:01:00+00:00",
-          "fichero": "TRADEINN_20260808_2301.csv"
-        },
-        {
-          "mtime": "2026-08-08T23:31:00+00:00",
-          "fichero": "TRADEINN_20260808_2331.csv"
-        },
         {
           "mtime": "2026-08-09T00:01:00+00:00",
           "fichero": "TRADEINN_20260809_0001.csv"
@@ -1689,6 +1497,10 @@
         {
           "mtime": "2026-08-11T20:01:00+00:00",
           "fichero": "TRADEINN_20260811_2001.csv"
+        },
+        {
+          "mtime": "2026-08-11T20:31:00+00:00",
+          "fichero": "TRADEINN_20260811_2031.csv"
         }
       ]
     }
