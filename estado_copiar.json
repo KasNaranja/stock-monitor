@@ -4984,11 +4984,16 @@
       "mtime": "2026-08-18T10:01:25+00:00",
       "ok": true,
       "cambio": true
+    },
+    {
+      "mtime": "2026-08-18T10:31:10+00:00",
+      "ok": true,
+      "cambio": false
     }
   ],
   "actual": {
-    "mtime": "2026-08-18T10:01:25+00:00",
+    "mtime": "2026-08-18T10:31:10+00:00",
     "ok": true,
-    "cambio": true
+    "cambio": false
   }
 }
