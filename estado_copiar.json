@@ -6194,11 +6194,16 @@
       "mtime": "2026-08-23T11:01:11+00:00",
       "ok": true,
       "cambio": true
+    },
+    {
+      "mtime": "2026-08-23T11:30:57+00:00",
+      "ok": true,
+      "cambio": false
     }
   ],
   "actual": {
-    "mtime": "2026-08-23T11:01:11+00:00",
+    "mtime": "2026-08-23T11:30:57+00:00",
     "ok": true,
-    "cambio": true
+    "cambio": false
   }
 }
