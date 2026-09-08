@@ -158,8 +158,23 @@ def main():
         try:
             info = consultar_tradeinn(*tconn)
             if info:
-                # La carpeta 'log' es la fuente completa: se reconstruye entera.
-                data["procesos"]["subir_tradeinn"] = info
+                # ACUMULA el historial en vez de reconstruirlo desde cero.
+                # Tradeinn borra de su carpeta 'log' los ficheros de mas de ~3-4
+                # dias, asi que la raiz+log solo muestran las ultimas subidas. Si
+                # reconstruyeramos entero perderiamos las anteriores y el grafico
+                # de 15 dias saldria corto y con huecos falsos. Guardamos lo ya
+                # visto y solo anadimos lo nuevo (dedup por nombre de fichero).
+                previo = data["procesos"].get("subir_tradeinn", {}).get("eventos", [])
+                por_fichero = {e["fichero"]: e for e in previo if e.get("fichero")}
+                for e in info["eventos"]:
+                    por_fichero[e["fichero"]] = e
+                corte = (datetime.datetime.now(datetime.timezone.utc)
+                         - datetime.timedelta(days=16)).replace(microsecond=0).isoformat()
+                eventos = sorted(
+                    (e for e in por_fichero.values() if e.get("mtime", "") >= corte),
+                    key=lambda e: e["mtime"])
+                data["procesos"]["subir_tradeinn"] = {"actual": info["actual"],
+                                                      "eventos": eventos}
         except Exception as e:
             print("Aviso: no se pudo leer el FTP de Tradeinn:", e, file=sys.stderr)
 
