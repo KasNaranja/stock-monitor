@@ -2180,11 +2180,16 @@
           "mtime": "2026-09-15T08:49:08+00:00",
           "size": 42374788,
           "detectado": "2026-09-15T09:01:29+00:00"
+        },
+        {
+          "mtime": "2026-09-15T10:49:34+00:00",
+          "size": 42374724,
+          "detectado": "2026-09-15T11:01:28+00:00"
         }
       ],
       "actual": {
-        "mtime": "2026-09-15T08:49:08+00:00",
-        "size": 42374788
+        "mtime": "2026-09-15T10:49:34+00:00",
+        "size": 42374724
       }
     },
     "Stock Marketplaces.csv": {
@@ -7210,24 +7215,16 @@
       }
     }
   },
-  "ultima_comprobacion": "2026-09-15T10:31:06+00:00",
+  "ultima_comprobacion": "2026-09-15T11:01:28+00:00",
   "procesos": {
     "subir_tradeinn": {
       "actual": {
-        "ultimo_fichero": "TRADEINN_20260915_1031.csv",
-        "mtime": "2026-09-15T10:31:00+00:00",
+        "ultimo_fichero": "TRADEINN_20260915_1101.csv",
+        "mtime": "2026-09-15T11:01:00+00:00",
         "num_skus": 24077,
-        "total_stock": 378987
+        "total_stock": 378304
       },
       "eventos": [
-        {
-          "mtime": "2026-08-30T10:31:10+00:00",
-          "fichero": "TRADEINN_20260830_1031.csv"
-        },
-        {
-          "mtime": "2026-08-30T11:01:17+00:00",
-          "fichero": "TRADEINN_20260830_1101.csv"
-        },
         {
           "mtime": "2026-08-30T11:31:04+00:00",
           "fichero": "TRADEINN_20260830_1131.csv"
@@ -11257,8 +11254,20 @@
           "fichero": "TRADEINN_20260915_1001.csv"
         },
         {
+          "mtime": "2026-09-15T10:01:00+00:00",
+          "fichero": "20260915_124756_TRADEINN_20260915_1001.csv"
+        },
+        {
           "mtime": "2026-09-15T10:31:00+00:00",
           "fichero": "TRADEINN_20260915_1031.csv"
+        },
+        {
+          "mtime": "2026-09-15T10:31:00+00:00",
+          "fichero": "20260915_124756_TRADEINN_20260915_1031.csv"
+        },
+        {
+          "mtime": "2026-09-15T11:01:00+00:00",
+          "fichero": "TRADEINN_20260915_1101.csv"
         }
       ]
     }
