@@ -1,11 +1,6 @@
 {
   "eventos": [
     {
-      "mtime": "2026-08-17T00:30:59+00:00",
-      "ok": true,
-      "cambio": false
-    },
-    {
       "mtime": "2026-08-17T01:01:20+00:00",
       "ok": true,
       "cambio": false
@@ -7499,10 +7494,15 @@
       "mtime": "2026-09-17T10:31:21+00:00",
       "ok": true,
       "cambio": true
+    },
+    {
+      "mtime": "2026-09-17T11:01:20+00:00",
+      "ok": true,
+      "cambio": true
     }
   ],
   "actual": {
-    "mtime": "2026-09-17T10:31:21+00:00",
+    "mtime": "2026-09-17T11:01:20+00:00",
     "ok": true,
     "cambio": true
   }
