@@ -2730,11 +2730,16 @@
           "mtime": "2026-09-24T14:49:50+00:00",
           "size": 42378960,
           "detectado": "2026-09-24T15:01:25+00:00"
+        },
+        {
+          "mtime": "2026-09-24T16:49:00+00:00",
+          "size": 42378926,
+          "detectado": "2026-09-24T17:01:33+00:00"
         }
       ],
       "actual": {
-        "mtime": "2026-09-24T14:49:50+00:00",
-        "size": 42378960
+        "mtime": "2026-09-24T16:49:00+00:00",
+        "size": 42378926
       }
     },
     "Stock Marketplaces.csv": {
@@ -9750,24 +9755,16 @@
       }
     }
   },
-  "ultima_comprobacion": "2026-09-24T16:31:21+00:00",
+  "ultima_comprobacion": "2026-09-24T17:01:33+00:00",
   "procesos": {
     "subir_tradeinn": {
       "actual": {
-        "ultimo_fichero": "TRADEINN_20260924_1631.csv",
-        "mtime": "2026-09-24T16:31:00+00:00",
+        "ultimo_fichero": "TRADEINN_20260924_1701.csv",
+        "mtime": "2026-09-24T17:01:00+00:00",
         "num_skus": 24077,
-        "total_stock": 370569
+        "total_stock": 369859
       },
       "eventos": [
-        {
-          "mtime": "2026-09-08T17:01:00+00:00",
-          "fichero": "TRADEINN_20260908_1701.csv"
-        },
-        {
-          "mtime": "2026-09-08T17:01:00+00:00",
-          "fichero": "20260908_194653_TRADEINN_20260908_1701.csv"
-        },
         {
           "mtime": "2026-09-08T17:31:00+00:00",
           "fichero": "TRADEINN_20260908_1731.csv"
@@ -15081,8 +15078,20 @@
           "fichero": "TRADEINN_20260924_1601.csv"
         },
         {
+          "mtime": "2026-09-24T16:01:00+00:00",
+          "fichero": "20260924_184725_TRADEINN_20260924_1601.csv"
+        },
+        {
           "mtime": "2026-09-24T16:31:00+00:00",
           "fichero": "TRADEINN_20260924_1631.csv"
+        },
+        {
+          "mtime": "2026-09-24T16:31:00+00:00",
+          "fichero": "20260924_184725_TRADEINN_20260924_1631.csv"
+        },
+        {
+          "mtime": "2026-09-24T17:01:00+00:00",
+          "fichero": "TRADEINN_20260924_1701.csv"
         }
       ]
     }
