@@ -3070,11 +3070,16 @@
           "mtime": "2026-09-30T06:50:09+00:00",
           "size": 42383071,
           "detectado": "2026-09-30T07:01:33+00:00"
+        },
+        {
+          "mtime": "2026-09-30T08:49:09+00:00",
+          "size": 42382699,
+          "detectado": "2026-09-30T09:01:34+00:00"
         }
       ],
       "actual": {
-        "mtime": "2026-09-30T06:50:09+00:00",
-        "size": 42383071
+        "mtime": "2026-09-30T08:49:09+00:00",
+        "size": 42382699
       }
     },
     "Stock Marketplaces.csv": {
@@ -11365,24 +11370,16 @@
       }
     }
   },
-  "ultima_comprobacion": "2026-09-30T08:31:17+00:00",
+  "ultima_comprobacion": "2026-09-30T09:01:34+00:00",
   "procesos": {
     "subir_tradeinn": {
       "actual": {
-        "ultimo_fichero": "TRADEINN_20260930_0831.csv",
-        "mtime": "2026-09-30T08:31:00+00:00",
+        "ultimo_fichero": "TRADEINN_20260930_0901.csv",
+        "mtime": "2026-09-30T09:01:00+00:00",
         "num_skus": 24077,
-        "total_stock": 360160
+        "total_stock": 360210
       },
       "eventos": [
-        {
-          "mtime": "2026-09-14T09:01:00+00:00",
-          "fichero": "TRADEINN_20260914_0901.csv"
-        },
-        {
-          "mtime": "2026-09-14T09:01:00+00:00",
-          "fichero": "20260914_114712_TRADEINN_20260914_0901.csv"
-        },
         {
           "mtime": "2026-09-14T09:31:00+00:00",
           "fichero": "TRADEINN_20260914_0931.csv"
@@ -16700,8 +16697,20 @@
           "fichero": "TRADEINN_20260930_0801.csv"
         },
         {
+          "mtime": "2026-09-30T08:01:00+00:00",
+          "fichero": "20260930_104803_TRADEINN_20260930_0801.csv"
+        },
+        {
           "mtime": "2026-09-30T08:31:00+00:00",
           "fichero": "TRADEINN_20260930_0831.csv"
+        },
+        {
+          "mtime": "2026-09-30T08:31:00+00:00",
+          "fichero": "20260930_104803_TRADEINN_20260930_0831.csv"
+        },
+        {
+          "mtime": "2026-09-30T09:01:00+00:00",
+          "fichero": "TRADEINN_20260930_0901.csv"
         }
       ]
     }
