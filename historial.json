@@ -3465,11 +3465,16 @@
           "mtime": "2026-10-06T20:48:47+00:00",
           "size": 42399928,
           "detectado": "2026-10-06T21:01:29+00:00"
+        },
+        {
+          "mtime": "2026-10-06T22:48:59+00:00",
+          "size": 42399932,
+          "detectado": "2026-10-06T23:01:29+00:00"
         }
       ],
       "actual": {
-        "mtime": "2026-10-06T20:48:47+00:00",
-        "size": 42399928
+        "mtime": "2026-10-06T22:48:59+00:00",
+        "size": 42399932
       }
     },
     "Stock Marketplaces.csv": {
@@ -13145,24 +13150,16 @@
       }
     }
   },
-  "ultima_comprobacion": "2026-10-06T22:31:15+00:00",
+  "ultima_comprobacion": "2026-10-06T23:01:29+00:00",
   "procesos": {
     "subir_tradeinn": {
       "actual": {
-        "ultimo_fichero": "TRADEINN_20261006_2231.csv",
-        "mtime": "2026-10-06T22:31:00+00:00",
+        "ultimo_fichero": "TRADEINN_20261006_2301.csv",
+        "mtime": "2026-10-06T23:01:00+00:00",
         "num_skus": 24077,
-        "total_stock": 379869
+        "total_stock": 379856
       },
       "eventos": [
-        {
-          "mtime": "2026-09-20T23:01:00+00:00",
-          "fichero": "TRADEINN_20260920_2301.csv"
-        },
-        {
-          "mtime": "2026-09-20T23:01:00+00:00",
-          "fichero": "20260921_014633_TRADEINN_20260920_2301.csv"
-        },
         {
           "mtime": "2026-09-20T23:31:00+00:00",
           "fichero": "TRADEINN_20260920_2331.csv"
@@ -18456,8 +18453,20 @@
           "fichero": "TRADEINN_20261006_2201.csv"
         },
         {
+          "mtime": "2026-10-06T22:01:00+00:00",
+          "fichero": "20261007_004643_TRADEINN_20261006_2201.csv"
+        },
+        {
           "mtime": "2026-10-06T22:31:00+00:00",
           "fichero": "TRADEINN_20261006_2231.csv"
+        },
+        {
+          "mtime": "2026-10-06T22:31:00+00:00",
+          "fichero": "20261007_004643_TRADEINN_20261006_2231.csv"
+        },
+        {
+          "mtime": "2026-10-06T23:01:00+00:00",
+          "fichero": "TRADEINN_20261006_2301.csv"
         }
       ]
     }
