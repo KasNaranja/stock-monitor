@@ -3980,11 +3980,16 @@
           "mtime": "2026-10-15T10:50:07+00:00",
           "size": 42407991,
           "detectado": "2026-10-15T11:01:37+00:00"
+        },
+        {
+          "mtime": "2026-10-15T12:49:19+00:00",
+          "size": 42407851,
+          "detectado": "2026-10-15T13:01:45+00:00"
         }
       ],
       "actual": {
-        "mtime": "2026-10-15T10:50:07+00:00",
-        "size": 42407991
+        "mtime": "2026-10-15T12:49:19+00:00",
+        "size": 42407851
       }
     },
     "Stock Marketplaces.csv": {
@@ -15450,24 +15455,16 @@
       }
     }
   },
-  "ultima_comprobacion": "2026-10-15T12:31:23+00:00",
+  "ultima_comprobacion": "2026-10-15T13:01:45+00:00",
   "procesos": {
     "subir_tradeinn": {
       "actual": {
-        "ultimo_fichero": "TRADEINN_20261015_1231.csv",
-        "mtime": "2026-10-15T12:31:00+00:00",
+        "ultimo_fichero": "TRADEINN_20261015_1301.csv",
+        "mtime": "2026-10-15T13:01:00+00:00",
         "num_skus": 24077,
-        "total_stock": 381310
+        "total_stock": 380867
       },
       "eventos": [
-        {
-          "mtime": "2026-09-29T13:01:00+00:00",
-          "fichero": "TRADEINN_20260929_1301.csv"
-        },
-        {
-          "mtime": "2026-09-29T13:01:00+00:00",
-          "fichero": "20260929_154735_TRADEINN_20260929_1301.csv"
-        },
         {
           "mtime": "2026-09-29T13:31:00+00:00",
           "fichero": "TRADEINN_20260929_1331.csv"
@@ -20773,8 +20770,20 @@
           "fichero": "TRADEINN_20261015_1201.csv"
         },
         {
+          "mtime": "2026-10-15T12:01:00+00:00",
+          "fichero": "20261015_144719_TRADEINN_20261015_1201.csv"
+        },
+        {
           "mtime": "2026-10-15T12:31:00+00:00",
           "fichero": "TRADEINN_20261015_1231.csv"
+        },
+        {
+          "mtime": "2026-10-15T12:31:00+00:00",
+          "fichero": "20261015_144719_TRADEINN_20261015_1231.csv"
+        },
+        {
+          "mtime": "2026-10-15T13:01:00+00:00",
+          "fichero": "TRADEINN_20261015_1301.csv"
         }
       ]
     }
