@@ -16850,24 +16850,16 @@
       }
     }
   },
-  "ultima_comprobacion": "2026-10-20T21:31:15+00:00",
+  "ultima_comprobacion": "2026-10-20T22:01:31+00:00",
   "procesos": {
     "subir_tradeinn": {
       "actual": {
-        "ultimo_fichero": "TRADEINN_20261020_2131.csv",
-        "mtime": "2026-10-20T21:31:00+00:00",
+        "ultimo_fichero": "TRADEINN_20261020_2201.csv",
+        "mtime": "2026-10-20T22:01:00+00:00",
         "num_skus": 24077,
         "total_stock": 382713
       },
       "eventos": [
-        {
-          "mtime": "2026-10-04T22:01:00+00:00",
-          "fichero": "TRADEINN_20261004_2201.csv"
-        },
-        {
-          "mtime": "2026-10-04T22:01:00+00:00",
-          "fichero": "20261005_004632_TRADEINN_20261004_2201.csv"
-        },
         {
           "mtime": "2026-10-04T22:31:00+00:00",
           "fichero": "TRADEINN_20261004_2231.csv"
@@ -22069,8 +22061,20 @@
           "fichero": "TRADEINN_20261020_2101.csv"
         },
         {
+          "mtime": "2026-10-20T21:01:00+00:00",
+          "fichero": "20261020_234702_TRADEINN_20261020_2101.csv"
+        },
+        {
           "mtime": "2026-10-20T21:31:00+00:00",
           "fichero": "TRADEINN_20261020_2131.csv"
+        },
+        {
+          "mtime": "2026-10-20T21:31:00+00:00",
+          "fichero": "20261020_234702_TRADEINN_20261020_2131.csv"
+        },
+        {
+          "mtime": "2026-10-20T22:01:00+00:00",
+          "fichero": "TRADEINN_20261020_2201.csv"
         }
       ]
     }
