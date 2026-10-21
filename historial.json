@@ -4315,11 +4315,16 @@
           "mtime": "2026-10-21T04:50:15+00:00",
           "size": 42425233,
           "detectado": "2026-10-21T05:01:36+00:00"
+        },
+        {
+          "mtime": "2026-10-21T06:49:44+00:00",
+          "size": 42425294,
+          "detectado": "2026-10-21T07:01:44+00:00"
         }
       ],
       "actual": {
-        "mtime": "2026-10-21T04:50:15+00:00",
-        "size": 42425233
+        "mtime": "2026-10-21T06:49:44+00:00",
+        "size": 42425294
       }
     },
     "Stock Marketplaces.csv": {
@@ -16955,24 +16960,16 @@
       }
     }
   },
-  "ultima_comprobacion": "2026-10-21T06:31:21+00:00",
+  "ultima_comprobacion": "2026-10-21T07:01:44+00:00",
   "procesos": {
     "subir_tradeinn": {
       "actual": {
-        "ultimo_fichero": "TRADEINN_20261021_0631.csv",
-        "mtime": "2026-10-21T06:31:00+00:00",
+        "ultimo_fichero": "TRADEINN_20261021_0701.csv",
+        "mtime": "2026-10-21T07:01:00+00:00",
         "num_skus": 24077,
-        "total_stock": 382780
+        "total_stock": 382955
       },
       "eventos": [
-        {
-          "mtime": "2026-10-05T07:01:00+00:00",
-          "fichero": "TRADEINN_20261005_0701.csv"
-        },
-        {
-          "mtime": "2026-10-05T07:01:00+00:00",
-          "fichero": "20261005_094739_TRADEINN_20261005_0701.csv"
-        },
         {
           "mtime": "2026-10-05T07:31:00+00:00",
           "fichero": "TRADEINN_20261005_0731.csv"
@@ -22174,8 +22171,20 @@
           "fichero": "TRADEINN_20261021_0601.csv"
         },
         {
+          "mtime": "2026-10-21T06:01:00+00:00",
+          "fichero": "20261021_084836_TRADEINN_20261021_0601.csv"
+        },
+        {
           "mtime": "2026-10-21T06:31:00+00:00",
           "fichero": "TRADEINN_20261021_0631.csv"
+        },
+        {
+          "mtime": "2026-10-21T06:31:00+00:00",
+          "fichero": "20261021_084836_TRADEINN_20261021_0631.csv"
+        },
+        {
+          "mtime": "2026-10-21T07:01:00+00:00",
+          "fichero": "TRADEINN_20261021_0701.csv"
         }
       ]
     }
